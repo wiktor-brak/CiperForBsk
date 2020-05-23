@@ -1,0 +1,172 @@
+﻿@model CiperForBsk.Models.Message
+@{
+    ViewData["Title"] = "SHA256";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="container-fluid text-center">
+
+    <div class="jumbotron py-2">
+        <h1 class="display-3">SHA-1</h1>
+        <p class="lead">(Secure Hash Algorithm) </p>
+        <hr class="my-4">
+        <p>
+            rodzina powiązanych ze sobą kryptograficznych funkcji skrótu zaprojektowanych przez NSA (National Security Agency) i publikowanych przez National Institute of Standards and Technology.
+
+            Pierwszy z nich opublikowany w 1993 oficjalnie nazwany SHA (nieoficjalnie, żeby nie pomylić z następcami określany jako SHA-0).
+        </p>
+
+
+    </div>
+    <hr>
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-secondary btn-link text-white" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Przykłady i opis
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <h2>Przykłady i opis</h2>
+                    <div class="card-deck  justify-content-center mb-4">
+
+                        <div class="card border-secondary mb-3 col-md-4">
+
+                            <div class="card-body">
+
+                                <h6 class="card-text">
+                                    Historia
+                                </h6>
+                                <p>
+                                    SHA-1 opublikowany został w 1995 i całkowicie zastąpił wycofany (ze względu na nieujawnione oficjalnie wady) z użytku SHA-0. SHA-0 i SHA-1 tworzą 160-bitowy skrót z wiadomości o maksymalnym rozmiarze 264 bitów i jest oparty na podobnych zasadach co MD5. Algorytm SHA-1 nie powinien być używany w nowych aplikacjach[1].
+
+                                    W 2001 powstały cztery następne warianty określane jako SHA-2 (SHA-224, SHA-256, SHA-384, SHA-512).
+
+                                    Podstawowym celem publikacji SHA był amerykański Standard Podpisu Cyfrowego (Digital Signature Standard). SHA jest podstawą szyfru blokowego SHACAL.
+
+                                    W 2009 NIST przeprowadził publiczny konkurs na następcę dotychczasowych funkcji skrótu w duchu podobnym do procesu wyłaniania algorytmu szyfrującego AES. Zostało zgłoszonych kilkadziesiąt kandydatur, które zostały rygorystycznie ocenione. Zwycięski algorytm wyłoniony w 2012 nosi miano SHA-3.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card border-secondary mb-3 col-md-4">
+
+                            <div class="card-body">
+
+                                <p class="card-text">
+                                    Przykłady skrótów wiadomości SHA-1 w systemie szesnastkowym i binarnym Base64 w kodowaniu tekstowym ASCII.
+
+
+                                </p>
+                                <h6 class="card-title">
+                                    SHA1("The quick brown fox jumps over the lazy dog") <br />
+                                    daje szesnastkowo: 2fd4e1c67a2d28fced849ee1bb76e7391b93eb12  <br />
+                                    przekazuje kodowanie binarne Base64 na kod ASCII: L9ThxnotKPzthJ7hu3bnORuT6xI=
+                                </h6>
+                                <p>
+                                    Nawet niewielka zmiana w komunikacie, z ogromnym prawdopodobieństwem, spowoduje zmianę wielu bitów z powodu efektu lawinowego. Na przykład zmiana dog na cog powoduje utworzenie skrótu o różnych wartościach dla 81 ze 160 bitów:
+                                </p>
+                                <h6 class="card-title">
+                                    SHA1("The quick brown fox jumps over the lazy cog") <br />
+                                    daje szesnastkowo: de9f2c7fd25e1b3afad3e85a0bd17d9b100db4b3 <br />
+                                    przekazuje kodowanie binarne Base64 na kod ASCII: 3p8sf9JeGzr60+haC9F9mxANtLM=
+
+                                </h6>
+
+                                <p>Skrót zerowy wynosi:  </p>
+                                <h6 class="card-title">
+                                    SHA1("") <br />
+                                    daje szesnastkowo: da39a3ee5e6b4b0d3255bfef95601890afd80709 <br />
+                                    przekazuje kodowanie binarne Base64 na kod ASCII: 2jmj7l5rSw0yVb/vlWAYkK/YBwk=
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="card border-secondary mb-3 col-md-4">
+
+                            <div class="card-body">
+                                <h6 class="card-title">Ataki</h6>
+                                <p class="card-text">
+                                    W 2004 zgłoszono udane ataki na funkcje skrótu mające strukturę podobną do SHA-1, co podniosło kwestię długotrwałego bezpieczeństwa SHA-1.
+
+                                    Pomiędzy rokiem 2005 a 2008 opublikowano szereg ataków zarówno na uproszczoną wersję SHA-1, jak i na pełną. Najlepszy z tych ataków wymaga jedynie około 263 operacji funkcji kompresującej (w porównaniu do 280 metodą brute-force).
+
+                                    NIST ogłosił, że do 2010 zaprzestanie stosowania SHA-1 na rzecz różnych wariantów SHA-2.
+                                    Zobacz wiadomość w serwisie Wikinews pt. Pierwsza kolizja funkcji kryptograficznej SHA-1 dokonana przez Google
+
+                                    W 2017 Google wraz z Centrum Wiskunde & Informatica ogłosiło, że przeprowadziło praktyczny atak, generując dwa różne pliki PDF o tym samym skrócie SHA-1
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link btn-secondary collapsed text-white" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Wypróbuj
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="card-deck  justify-content-center mb-4">
+                        <div class="card text-center col-md-8 ">
+                            <h3 class="card-header">
+                                Zaszyfruj wiadomość
+                            </h3>
+                            <div class="card-body">
+                                <form asp-action="ShortSHA1" asp-controller="Short">
+                                    <div class="form-group">
+
+                                        <label asp-for="Msg" class="col-form-label col-form-label-lg">Wpisz wiadomość</label>
+                                        <br />
+                                        <input placeholder="a-z" type="text" asp-for="Msg" class="form-control-lg col-md-8" />
+
+                                    </div>
+                                    <button asp-controller="Short" asp-action="ShortSHA1" class="btn btn-secondary">Wykonaj</button>
+                                </form>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <h4>Wiadomość: @Model.Msg</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-secondary btn-link collapsed text-white" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Kod szyfru
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+
+                    <div class="card-deck  justify-content-center mb-4">
+                        <div class="card col-md-6">
+                            <img class="card-img-top" src="~/Images/sha1.png" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-text">Kod odpowiedzialny za działanie szyfru</h4>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

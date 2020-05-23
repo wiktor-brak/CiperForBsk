@@ -44,16 +44,16 @@ namespace CiperForBsk.Controllers
             return View(message);
         }
 
-        public IActionResult ShortSHA256(Message message)
+        public IActionResult ShortSHA1(Message message)
         {
 
-            using (SHA256 sha256Hash = SHA256.Create())
+            using (SHA1 sha1Hash = SHA1.Create())
             {
 
                 if (!String.IsNullOrEmpty(message.Msg))
                 {
                     byte[] sourceBytes = Encoding.UTF8.GetBytes(message.Msg);
-                    byte[] hashBytes = sha256Hash.ComputeHash(sourceBytes);
+                    byte[] hashBytes = sha1Hash.ComputeHash(sourceBytes);
                     string hash = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
                     message.Msg = hash;
                 }

@@ -5,15 +5,112 @@
 }
 
 <div class="container-fluid" text-center>
-    <form asp-action="ShortSHA512" asp-controller="Short">
-        <div class="form-group">
 
-            <label asp-for="Msg">Wpisz wiadomość</label>
-            <br />
-            <input placeholder="a-z" type="text" asp-for="Msg" class="form-control-lg col-sm-5" />
-
-        </div>
-        <button asp-controller="Short" asp-action="ShortSHA512" class="btn btn-primary">Wykonaj</button>
-        <div> @Model.Msg</div>
-    </form>
 </div>
+
+
+<div class="container-fluid text-center">
+
+    <div class="jumbotron py-2">
+        <h1 class="display-3">SHA-512(SHA-2)</h1>
+        <p class="lead">(Secure Hash Algorithm) </p>
+        <hr class="my-4">
+        <p>
+            zestaw kryptograficznych funkcji skrótu (SHA-224, SHA-256, SHA-384, SHA-512) zaprojektowany przez National Security Agency (NSA) i opublikowany w 2001 roku przez National Institute of Standards and Technology (NIST) jako Federalny standard przetwarzania informacji rządu Stanów Zjednoczonych. SHA oznacza Secure Hash Algorithm. SHA-2 zawiera szereg zmian odróżniających go od poprzednika SHA-1. SHA-2 składa się z zestawu czterech funkcji dających skróty wielkości 224, 256, 384 lub 512 bitów.
+        </p>
+
+
+    </div>
+    <hr>
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-secondary btn-link text-white" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                       Zestawienie
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <h2>Zestawienie funkcji skrótów SHA</h2>
+                    <div class="card-deck  justify-content-center mb-4">
+                        <div class="card-body">
+
+                            <div class="card-deck  justify-content-center mb-4">
+                                <div class="card col-md-8">
+                                    <img class="card-img-top" src="~/Images/shafun.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-text">Przedstawiona w tabeli wydajność służy do celów porównawczych. Testy przeprowadzano na platformie Intel Core 2 1,83 GHz z systemem Windows Vista w trybie 32-bitowym (dla wersji 32-bitowej) oraz AMD Opteron 8354 2,2 GHz z systemem Linux (dla wersji 64-bitowej). </h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link btn-secondary collapsed text-white" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Wypróbuj
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="card-deck  justify-content-center mb-4">
+                        <div class="card text-center col-md-8 ">
+                            <h3 class="card-header">
+                                Zaszyfruj wiadomość
+                            </h3>
+                            <div class="card-body">                              
+                                <form asp-action="ShortSHA512" asp-controller="Short">
+                                    <div class="form-group">
+
+                                        <label asp-for="Msg" class="col-form-label col-form-label-lg">Wpisz wiadomość</label>
+                                        <br />
+                                        <input placeholder="a-z" type="text" asp-for="Msg" class="form-control-lg col-sm-5" />
+
+                                    </div>
+                                    <button asp-controller="Short" asp-action="ShortSHA512" class="btn btn-secondary">Wykonaj</button>
+                                </form>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <h4>Wiadomość: @Model.Msg</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-secondary btn-link collapsed text-white" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Kod szyfru
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+
+                    <div class="card-deck  justify-content-center mb-4">
+                        <div class="card col-md-6">
+                            <img class="card-img-top" src="~/Images/sha512.png" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-text">Kod odpowiedzialny za działanie szyfru</h4>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
