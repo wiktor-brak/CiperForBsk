@@ -1,0 +1,15 @@
+﻿@model CiperForBsk.Models.Message
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="container-fluid text-center" >
+        <div>Zasady Quizu:</div>
+        <div>1. Aby przejśc do następnego pytania trzeba najpierw odpowiedzieć na dane pytanie</div>
+        <div>2. Każde pytanie dotyczy jednego szyfru/funkcji skrótu</div>
+        <div>3. Pytanie będą w różnej formie: z odpowiedziami ABCD oraz do ręcznego wpisania odpowiedzi</div>
+        <div>4. Pytania mogą dotyczyć działania szyfu/funkcji skrótu lub pochodzenia oraz ciekawostek związanych z nimi</div>
+        <div>5. Jeśli jesteś gotowy naciśnij Start</div>
+        <a asp-controller="Quiz" asp-action="Q1" class="btn btn-primary"> Start</a>
+    </div>

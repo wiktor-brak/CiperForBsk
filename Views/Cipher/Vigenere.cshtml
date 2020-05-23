@@ -1,0 +1,195 @@
+﻿@model CiperForBsk.Models.Message
+@{
+    ViewData["Title"] = "Vigenere";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid text-center">
+
+    <div class="jumbotron py-2">
+        <h1 class="display-3">Szyfr Vigenère’a</h1>
+        <p class="lead">Algorytm Vigenère’a</p>
+        <hr class="my-4">
+        <p>
+            jeden z klasycznych algorytmów szyfrujących. Należy on do grupy tzw. polialfabetycznych szyfrów podstawieniowych. Szyfr ten błędnie został przypisany twórcy bardziej skomplikowanego szyfru Blaise’owi de Vigenère.
+            Szyfr, który obecnie nazywamy szyfrem Vigenère’a, po raz pierwszy został opisany przez Giovana Batista Belaso w 1553, w broszurze zatytułowanej La cifra del. Sig. Giovan Batista Belaso.
+        </p>
+
+
+    </div>
+    <hr>
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-secondary btn-link text-white" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Przykłady i opis
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <h2>Przykłady i opis</h2>
+                    <div class="card-deck  justify-content-center mb-4">
+
+                        <div class="card border-secondary mb-3 col-md-4">
+
+                            <div class="card-body">
+
+                                <p class="card-text">
+                                    Działanie szyfru Vigenère’a oparte jest na następującej tablicy:
+                                </p>
+                                <h6 class="card-title">
+                                    A B C D E F G H I J K L M N O P Q R S T U V W X Y Z <br />
+                                    B C D E F G H I J K L M N O P Q R S T U V W X Y Z A <br />
+                                    C D E F G H I J K L M N O P Q R S T U V W X Y Z A B <br />
+                                    D E F G H I J K L M N O P Q R S T U V W X Y Z A B C <br />
+                                    E F G H I J K L M N O P Q R S T U V W X Y Z A B C D<br />
+                                    F G H I J K L M N O P Q R S T U V W X Y Z A B C D E<br />
+                                    G H I J K L M N O P Q R S T U V W X Y Z A B C D E F<br />
+                                    H I J K L M N O P Q R S T U V W X Y Z A B C D E F G<br />
+                                    I J K L M N O P Q R S T U V W X Y Z A B C D E F G H<br />
+                                    J K L M N O P Q R S T U V W X Y Z A B C D E F G H I<br />
+                                    K L M N O P Q R S T U V W X Y Z A B C D E F G H I J<br />
+                                    L M N O P Q R S T U V W X Y Z A B C D E F G H I J K<br />
+                                    M N O P Q R S T U V W X Y Z A B C D E F G H I J K L<br />
+                                    N O P Q R S T U V W X Y Z A B C D E F G H I J K L M<br />
+                                    O P Q R S T U V W X Y Z A B C D E F G H I J K L M N<br />
+                                    P Q R S T U V W X Y Z A B C D E F G H I J K L M N O<br />
+                                    Q R S T U V W X Y Z A B C D E F G H I J K L M N O P<br />
+                                    R S T U V W X Y Z A B C D E F G H I J K L M N O P Q<br />
+                                    S T U V W X Y Z A B C D E F G H I J K L M N O P Q R<br />
+                                    T U V W X Y Z A B C D E F G H I J K L M N O P Q R S<br />
+                                    U V W X Y Z A B C D E F G H I J K L M N O P Q R S T<br />
+                                    V W X Y Z A B C D E F G H I J K L M N O P Q R S T U<br />
+                                    W X Y Z A B C D E F G H I J K L M N O P Q R S T U V<br />
+                                    X Y Z A B C D E F G H I J K L M N O P Q R S T U V W<br />
+                                    Y Z A B C D E F G H I J K L M N O P Q R S T U V W X<br />
+                                    Z A B C D E F G H I J K L M N O P Q R S T U V W X Y<br />
+                                </h6>
+                              
+                            </div>
+                        </div>
+                        <div class="card border-secondary mb-3 col-md-4">
+
+                            <div class="card-body">
+
+                                <p class="card-text">
+                                    Każdy z wierszy tablicy odpowiada szyfrowi Cezara, przy czym w pierwszym wierszu przesunięcie wynosi 0, w drugim 1 itd.
+
+                                    Aby zaszyfrować pewien tekst, potrzebne jest słowo kluczowe. Słowo kluczowe jest tajne i mówi, z którego wiersza (lub kolumny) należy w danym momencie skorzystać.
+
+                                    Przypuśćmy, że chcemy zaszyfrować prosty tekst, np.:
+                                </p>
+                                <h6 class="card-title">
+                                    TO JEST BARDZO TAJNY TEKST
+                                </h6>
+                                <p>
+                                    Do tego celu użyjemy znanego tylko nam słowa kluczowego, np.: TAJNE
+
+                                    Na początku zauważamy, że użyte słowo kluczowe jest zbyt krótkie, by wystarczyło do zaszyfrowania całego tekstu, więc należy użyć jego wielokrotności. Będzie to miało następującą postać:
+                                </p>
+                                <h6 class="card-title">
+                                    TO JEST BARDZO TAJNY TEKST
+                            
+                                </h6>
+                                <h6 class="card-title">
+                          
+                                    TA JNET AJNETA JNETA JNETA
+                                </h6>
+                                <p>Następnie wykonujemy szyfrowanie w następujący sposób: litera szyfrogramu odpowiada literze z tabeli znajdującej się na przecięciu wiersza, wyznaczanego przez literę tekstu jawnego i kolumny wyznaczanej przez literę słowa kluczowego, np. po kolei „T” i „T” daje „M”, „O” i „A” daje „O” itd. W efekcie otrzymujemy zaszyfrowany tekst: </p>
+                                <h6 class="card-title">
+                                    MO SRWM BJEHSO CNNGY CROLT
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="card border-secondary mb-3 col-md-4">
+
+                            <div class="card-body">
+
+                                <p class="card-text">
+                                    Nie ma znaczenia, czy litera tekstu jawnego będzie wyznaczała wiersz, a słowa kluczowego kolumnę, czy na odwrót, efekt szyfrowania będzie zawsze taki sam.
+
+                                    Odszyfrowywanie przebiega podobnie. Bierzemy kolejne litery szyfrogramu oraz odpowiadające im litery słowa kluczowego (podobnie, jak przy szyfrowaniu). Wybieramy kolumnę odpowiadającą literze słowa kluczowego. Następnie w tej kolumnie szukamy litery szyfrogramu. Numer wiersza odpowiadający znalezionej literze jest numerem litery tekstu jawnego. Np. w kolumnie 'T' litera „M” znajduje się w wierszu 'T', w kolumnie 'A' litera „O” znajduje się w wierszu 'O' itd.
+
+                                    Istnieje jednakże prostszy, szczególnie dla celów implementacyjnych, sposób deszyfrowania. Wymaga on wykonania operacji „odwrócenia” hasła, jak poniżej:
+
+                                    K2(i) = [26 – K(i)] mod 26
+
+                                    gdzie K(i) – kolejna litera słowa kluczowego, numerowane A=0, B=1 itd., a K2(i) – kolejna litera hasła „odwróconego”. 26 oznacza liczbę liter alfabetu łacińskiego.
+
+                                    Efektem działania takiego przekształcenia dla hasła „TAJNE” będzie słowo „HARNW”.
+
+                                    Następnie należy na szyfrogramie wykonać operację szyfrowania z otrzymanym hasłem. Wynikiem, jak można się przekonać, będzie postać jawna tekstu.
+                                </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link btn-secondary collapsed text-white" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Spróbuj sam
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="card-deck  justify-content-center mb-4">
+                        <div class="card text-center col-md-8 ">
+                            <h3 class="card-header">
+                                Zaszyfruj wiadomość
+                            </h3>
+                            <div class="card-body">
+                                <form asp-action="Vigenere" asp-controller="Cipher">
+                                    <div class="form-group">
+                                        <label asp-for="Key" class="col-form-label col-form-label-lg">Podaj Słowo kluczowe(bez spacji)</label><br />
+                                        <input type="text" asp-for="Key" class="form-control-lg " />
+                                        <br />
+                                        <label asp-for="Msg" class="col-form-label col-form-label-lg">Wpisz wiadomość</label>
+                                        <br />
+                                        <input placeholder="a-z" pattern="[A-Z, a-z, ]{1,255}" type="text" asp-for="Msg" class="form-control-lg col-md-11" />
+
+                                    </div>
+                                    <button asp-controller="Cipher" asp-action="Vigenere" class="btn btn-secondary">Wykonaj</button>
+                                </form>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <h4>Wiadomość: @Model.Msg</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-secondary btn-link collapsed text-white" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Kod szyfru
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+
+                    <div class="card-deck  justify-content-center mb-4">
+                        <div class="card col-md-9">
+                            <img class="card-img-top" src="~/Images/vig.png" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-text">Kod odpowiedzialny za działanie szyfru</h4>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,168 @@
+﻿@model CiperForBsk.Models.Message
+@{
+    ViewData["Title"] = "MD5";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid text-center">
+
+    <div class="jumbotron py-2">
+        <h1 class="display-3">Algorytm MD5</h1>
+        <p class="lead">(z ang. Message-Digest algorithm 5) </p>
+        <hr class="my-4">
+        <p>
+            algorytm kryptograficzny, opracowany przez Rona Rivesta (współtwórcę RSA) w 1991 roku, będący popularną kryptograficzną funkcją skrótu, która z ciągu danych o dowolnej długości generuje 128-bitowy skrót.
+
+            W 2004 znaleziono sposób na generowanie kolizji MD5, co obniża jego bezpieczeństwo w niektórych zastosowaniach (np. podpisywaniu plików).
+
+            Z powodu znanych ataków kryptoanalitycznych funkcja MD5 zdecydowanie nie powinna być używana w zastosowaniach wymagających odporności na kolizje, na przykład w podpisie cyfrowym. W innych, takich jak HMAC, nadal może zapewniać satysfakcjonujący poziom bezpieczeństwa choć stosowanie jej w nowych rozwiązaniach nie jest zalecane.
+        </p>
+
+
+    </div>
+    <hr>
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-secondary btn-link text-white" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Przykłady i opis
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <h2>Przykłady i opis</h2>
+                    <div class="card-deck  justify-content-center mb-4">
+
+                        <div class="card border-secondary mb-3 col-md-4">
+
+                            <div class="card-body">
+
+                                <p class="card-text">
+                                    Algorytm MD5 jest następujący:
+                                </p>
+                                <h6 class="card-title">
+                                    1. Doklejenie do wiadomości wejściowej bitu o wartości 1 <br />
+                                    2. Doklejenie takiej ilości zer, by ciąg składał się z 512-bitowych bloków i ostatniego niepełnego – 448-bitowego <br />
+                                    3. Doklejenie 64-bitowego (zaczynając od najmniej znaczącego bitu) licznika oznaczającego rozmiar wiadomości; w ten sposób otrzymywana wiadomość złożona jest z 512-bitowych fragmentów <br />
+                                    4. Ustawienie stanu początkowego na 0123456789abcdeffedcba9876543210 <br />
+                                    5. Uruchomienie na każdym bloku funkcji zmieniającej stan (istnieje przynajmniej jeden blok nawet dla pustego wejścia) <br />
+                                    6. Zwrócenie stanu po przetworzeniu ostatniego bloku jako obliczony skrót wiadomości <br />
+                                </h6>
+                                <p>Funkcja zmiany stanu ma 4 cykle (64 kroki). Stan jest traktowany jako 4 liczby 32-bitowe. W każdym kroku do jednej z tych liczb dodawany jest jeden z 16 32-bitowych fragmentów bloku wejściowego, pewna stała zależna od numeru kroku oraz pewna prosta funkcja boolowska 3 pozostałych liczb. Następnie liczba ta jest obracana (przesuwana cyklicznie z najstarszymi bitami wsuwanymi w najmłodsze pozycje) o liczbę bitów zależną od kroku, oraz jest dodawana do niej jedna z pozostałych liczb. </p>
+                            </div>
+                        </div>
+                        <div class="card border-secondary mb-3 col-md-4">
+
+                            <div class="card-body">
+
+                                <p class="card-text">
+                                    Skrót obliczony dla krótkiego tekstu:
+                                </p>
+                                <h6 class="card-title">
+                                    MD5("Ala ma kota") = 91162629d258a876ee994e9233b2ad87
+                                </h6>
+                                <p>
+                                    Nawet niewielka zmiana w tekście (w tym przypadku zamiana a na y) powoduje (z bardzo dużym prawdopodobieństwem) powstanie zupełnie innego skrótu MD5
+                                </p>
+                                <h6 class="card-title">
+                                    MD5("Ala ma koty") = 6a645004f620c691731b5a292c25d37f
+
+                                </h6>
+                     
+                                <p>Dość powszechnym zastosowaniem MD5 jest generowanie skrótów wszelkiego rodzaju plików udostępnianych publicznie (najczęściej w Internecie), dzięki czemu osoba, która pobrała dany plik z sieci może od razu zweryfikować (generując skrót MD5 na swojej kopii i porównując wyniki) czy jest to ten sam plik, który został zamieszczony przez jego autora lub czy nie nastąpiły przekłamania podczas samego procesu pobierania danych. Publikowana w takim przypadku wartość ma postać 32-znakowej liczby w zapisie szesnastkowym.  </p>
+                                <h6 class="card-title">
+                                    Wynik MD5 dla archiwum "linux-2.6.10.tar.bz2" o wielkości 35 MB: cffcd2919d9c8ef793ce1ac07a440eda
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="card border-secondary mb-3 col-md-4">
+
+                            <div class="card-body">
+                                <h6 class="card-title">Historia</h6>
+                                <p class="card-text">
+                                    MD5 jest jednym z serii algorytmów zaprojektowanych przez profesora Rona Rivesta z MIT (Rivest, 1994). Poprzednikiem był algorytm MD4, który w wyniku analizy przeprowadzonej przez Hansa Dobbertina okazał się zbyt mało bezpieczny. Jego bezpiecznym następcą był MD5 opracowany w 1991.
+
+                                    W 1996 Dobbertin zaprezentował analizę kolizji algorytmu MD5. Chociaż nie był to jeszcze pełny atak na funkcję skrótu to jednak wystarczył, aby specjaliści w dziedzinie kryptografii zaczęli stosować silniejsze odpowiedniki, takie jak SHA-1 lub RIPEMD-160.
+
+                                    W marcu 2004 powstał rozproszony projekt nazywany MD5CRK (ang.). Twórcą projektu był Jean-Luc Cooke i jego współpracownicy. Miał on na celu wykazanie, że możliwe jest wyznaczenie wiadomości różnej od zadanej, która ma taką samą wartość skrótu. Do tego celu wykorzystano sieć Internet oraz dużą liczbę komputerów biorących udział w projekcie. Projekt wykazał, że dysponując bardzo dużą mocą obliczeniową możliwe jest podrabianie generowanych podpisów.
+
+                                    Dopiero prace badawcze chińskich naukowców Xiaoyun Wang, Dengguo Fen, Xuejia Lai i Hongbo Yu w pełni wykazały słabość algorytmu. 17 sierpnia 2004 opublikowali oni analityczny algorytm ataku, dzięki któremu do podrobienia podpisu wystarczyła godzina działania klastrowego komputera IBM P690.
+
+                                    W marcu 2005 Arjen Lenstra, Xiaoyun Wang i Benne de Weger zaprezentowali metodę umożliwiającą znalezienie kolizji dla algorytmu MD5 i przeprowadzenie ataku polegającego na wysłaniu dwóch różnych wiadomości chronionych tym samym podpisem cyfrowym. Kilka dni później Vlastimil Klima[3] opublikował algorytm[4], który potrafił znaleźć kolizję w ciągu minuty, używając metody nazwanej tunneling.
+
+                                    Pod koniec 2008 roku niezależni kalifornijscy specjaliści ds. bezpieczeństwa, we współpracy z ekspertami z Centrum voor Wiskunde en Informatica, Technische Universiteit Eindhoven oraz Ecole Polytechnique Fédérale de Lausanne odkryli lukę w MD5 umożliwiającą podrobienie dowolnego certyfikatu SSL w taki sposób, że zostanie on zaakceptowany przez wszystkie popularne przeglądarki internetowe. Do podrobienia certyfikatu wystarczyła moc obliczeniowa 200 konsol do gier PlayStation 3[5].
+
+                                    Od lat 90. MD5 nie jest uważany za bezpieczny do większości zastosowań i w jego miejsce zaleca się stosowanie algorytmów z rodziny SHA-2 lub SHA-3.
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link btn-secondary collapsed text-white" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Spróbuj sam
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="card-deck  justify-content-center mb-4">
+                        <div class="card text-center col-md-8 ">
+                            <h3 class="card-header">
+                                Zaszyfruj wiadomość
+                            </h3>
+                            <div class="card-body">
+                                <form asp-action="ShortMD5" asp-controller="Short">
+                                    <div class="form-group">
+
+                                        <label asp-for="Msg" class="col-form-label col-form-label-lg">Wpisz wiadomość</label>
+                                        <br />
+                                        <input placeholder="a-z" type="text" asp-for="Msg" class="form-control-lg col-md-8" />
+
+                                    </div>
+                                    <button asp-controller="Short" asp-action="ShortMD5" class="btn btn-secondary">Wykonaj</button>
+                           
+                                </form>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <h4>Wiadomość: @Model.Msg</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-secondary btn-link collapsed text-white" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Kod szyfru
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+
+                    <div class="card-deck  justify-content-center mb-4">
+                        <div class="card col-md-6">
+                            <img class="card-img-top" src="~/Images/md5.png" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-text">Kod odpowiedzialny za działanie szyfru</h4>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

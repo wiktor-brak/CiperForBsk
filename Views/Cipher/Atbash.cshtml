@@ -1,0 +1,135 @@
+﻿@model CiperForBsk.Models.Message
+@{
+    ViewData["Title"] = "Atbash";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid text-center">
+
+    <div class="jumbotron py-2">
+        <h1 class="display-3">Szyfr Atbasz</h1>
+        <p class="lead">(hebr. ‏אתבש‎, atbasz)</p>
+        <hr class="my-4">
+        <p>
+            prosty monoalfabetyczny szyfr podstawieniowy pochodzenia hebrajskiego, 
+            którego działanie polega na zamianie litery leżącej w odległości X od początku alfabetu na literę leżącą w odległości X od jego końca. 
+            Prawdopodobnie został on opracowany około roku 500 p.n.e.
+            Aby odszyfrować tekst zaszyfrowany tym szyfrem, wystarczy ponownie poddać go szyfracji. 
+        </p>
+
+
+    </div>
+    <hr>
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-secondary btn-link text-white" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Przykłady i opis
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <h2>Przykłady i opis</h2>
+                    <div class="card-deck  justify-content-center mb-4">
+
+                        <div class="card border-secondary mb-3 col-md-4">
+
+                            <div class="card-body">
+
+                                <p class="card-text">
+                                    Aby ułatwić sobie ręczne operacje na tym szyfrze wystarczy użyć tabeli.
+                                    Tablica kodowa: 
+                                </p>
+                                <h6 class="card-title">A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z</h6>
+                                <h6 class="card-title">Z|Y|X|W|V|U|T|S|R|Q|P|O|N|M|L|K|J|I|H|G|F|E|D|C|B|A</h6>
+                            </div>
+                        </div>
+                        <div class="card border-secondary mb-3 col-md-4">
+
+                            <div class="card-body">
+
+                                <p class="card-text">
+                                    W alfabecie łacińskim:
+
+                                    a (pierwsza litera od początku alfabetu) → z (pierwsza litera od końca alfabetu)
+                                    t (siódma litera od końca alfabetu) → g (siódma litera od początku alfabetu)
+                                </p>
+                                <h6 class="card-title">
+                                    Tekst jawny:
+                                    Ala ma kota
+                                </h6>
+                                <h6 class="card-title">
+                                    Tekst zakodowany:
+
+                                    Zoz nz plgz
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link btn-secondary collapsed text-white" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Spróbuj sam
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="card-deck  justify-content-center mb-4">
+                        <div class="card text-center col-md-8 ">
+                            <h3 class="card-header">
+                                Zaszyfruj wiadomość
+                            </h3>
+                            <div class="card-body">
+                                <form asp-action="Atbash" asp-controller="Cipher">
+                                    <div class="form-group">
+
+                                        <label asp-for="Msg" class="col-form-label col-form-label-lg">Wpisz wiadomość</label>
+                                        <br />
+                                        <input placeholder="a-z" pattern="[a-z]{1,255}" type="text" asp-for="Msg" class="form-control-lg col-md-11" />
+
+                                    </div>
+                                    <button asp-controller="Cipher" asp-action="Atbash" class="btn btn-secondary">Wykonaj</button>
+                                </form>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <h4>Wiadomość: @Model.Msg</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-secondary btn-link collapsed text-white" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Kod szyfru
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+
+                    <div class="card-deck  justify-content-center mb-4">
+                        <div class="card col-md-4">
+                            <img class="card-img-top" src="~/Images/atbasz.png" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-text">Kod odpowiedzialny za działanie szyfru</h4>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

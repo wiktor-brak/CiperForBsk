@@ -1,0 +1,130 @@
+﻿@model CiperForBsk.Models.Message
+@{
+    ViewData["Title"] = "Caesar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="container-fluid text-center">
+
+        <div class="jumbotron py-2">
+            <h1 class="display-3">Szyfr cezara</h1>
+            <p class="lead">(zwany też szyfrem przesuwającym, kodem Cezara lub przesunięciem Cezariańskim)</p>
+            <hr class="my-4">
+            <p>
+                To jedna z najprostszych technik szyfrowania. Jest to rodzaj szyfru podstawieniowego,
+                w którym każda litera tekstu jawnego (niezaszyfrowanego) zastępowana jest inną, oddaloną od niej
+                o stałą liczbę pozycji w alfabecie, literą (szyfr monoalfabetyczny), przy czym kierunek zamiany musi być zachowany.
+                Nie rozróżnia się przy tym liter dużych i małych. Nazwa szyfru pochodzi od Juliusza Cezara,
+                który prawdopodobnie używał tej techniki do komunikacji ze swymi przyjaciółmi. Deszyfrowanie polega na odwróceniu tej operacji.
+            </p>
+
+
+        </div>
+        <hr>
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-secondary btn-link text-white" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Przykłady i opis
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <h2>Przykłady i opis</h2>
+                            <div class="card-deck  justify-content-center mb-4">
+
+                                <div class="card border-secondary mb-3 col-md-4">
+
+                                    <div class="card-body">
+
+                                        <p class="card-text">
+                                            Sposób szyfrowania może być przedstawiony za pomocą diagramu dwóch ciągów z odpowiadającymi sobie kolejnymi literami alfabetu.
+                                            Te same litery drugiego ciągu są przesunięte względem ciągu pierwszego o określoną liczbę pozycji, zwaną parametrem przesunięcia (tutaj 3) i pełniącą funkcję klucza szyfru:
+                                        </p>
+                                        <h6 class="card-title">Alfabet: AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻ</h6>
+                                        <h6 class="card-title">Szyfr: CĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻAĄB</h6>
+                                    </div>
+                                </div>
+                                <div class="card border-secondary mb-3 col-md-4">
+
+                                    <div class="card-body">
+
+                                        <p class="card-text">
+                                            Należy przy tym zauważyć, że ostatnim literom alfabetu w górnym ciągu odpowiadają początkowe litery w ciągu dolnym (alfabet został „zawinięty”).
+                                            Chcąc zaszyfrować wiadomość, należy każdą jej literę zastąpić odpowiednikiem z szyfru (wiadomość w przykładzie jest zapisana wersalikami,
+                                            aczkolwiek szyfr jest niewrażliwy na wielkość liter):
+                                        </p>
+                                        <h6 class="card-title">  Tekst jawny: MĘŻNY BĄDŹ, CHROŃ PUŁK TWÓJ I SZEŚĆ FLAG</h6>
+                                        <h6 class="card-title">Tekst zaszyfrowany: OHBÓŻ DĆFĄ, EKTRP ŚZŃM YŹSŁ L UAGWĘ INCJ</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link btn-secondary collapsed text-white" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Spróbuj sam
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="card-deck  justify-content-center mb-4">
+                                <div class="card text-center col-md-8 ">
+                                    <h3 class="card-header">
+                                     Zaszyfruj wiadomość
+                                    </h3>
+                                    <div class="card-body">
+                                        <form asp-action="Caesar" asp-controller="Cipher">
+                                            <div class="form-group">
+                                                <label asp-for="Step" class="col-form-label col-form-label-lg">Podaj przesunięcie</label><br />
+                                                <input min="0" max="25" placeholder="Wpisz liczbe od 0 do 25" type="number" asp-for="Step" class="form-control-lg " />
+                                                <br />
+                                                <label asp-for="Msg" class="col-form-label col-form-label-lg">Wpisz wiadomość</label>
+                                                <br />
+                                                <input placeholder="a-z" pattern="[a-z]{1,255}" type="text" asp-for="Msg" class="form-control-lg col-md-11" />
+
+                                            </div>
+                                            <button asp-controller="Cipher" asp-action="Caesar" class="btn btn-secondary">Wykonaj</button>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        <h4>Przesunięcie: @Model.Step</h4>
+                                        <h4>Wiadomość: @Model.Msg</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-secondary btn-link collapsed text-white" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                               Kod szyfru
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+
+                            <div class="card-deck  justify-content-center mb-4">
+                                <div class="card col-md-4">
+                                    <img class="card-img-top" src="~/Images/Caesar.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-text">Kod odpowiedzialny za działanie szyfru</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        </div>
